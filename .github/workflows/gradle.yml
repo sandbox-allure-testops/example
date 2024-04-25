@@ -2,7 +2,7 @@ name: Java
 
 on:
   schedule:
-    - cron: "15 16 * * *"
+    - cron: "25 16 * * *"
   workflow_dispatch:
     inputs:
       ALLURE_JOB_RUN_ID:
