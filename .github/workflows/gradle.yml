@@ -9,6 +9,10 @@ on:
       ALLURE_USERNAME:
         description: ALLURE_USERNAME - service parameter (leave blank)
         required: false
+      BRANCH:
+        description: Branch
+        required: false
+        default: master
       BROWSER:
         description: Browser
         required: false
@@ -58,6 +62,7 @@ jobs:
       - name: Run tests
         run: allurectl watch -- ./gradlew clean test
         env:
+          BRANCH: ${{ github.event.inputs.BRANCH}}
           BROWSER: ${{ github.event.inputs.BROWSER}}
           ENDPOINT: ${{ github.event.inputs.ENDPOINT}}
           OS: ${{ github.event.inputs.OS}}
