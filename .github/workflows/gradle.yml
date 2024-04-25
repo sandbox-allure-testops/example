@@ -28,7 +28,7 @@ on:
       VERSION:
         description: Version
         required: false
-        default: 5.0.1
+        default: 5.1.2
 
 env:
   ALLURE_ENDPOINT: https://sandbox.testops.cloud/
