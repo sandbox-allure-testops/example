@@ -35,7 +35,7 @@ env:
   ALLURE_RESULTS: "build/allure-results"
 
 jobs:
-  tests: 
+  autotests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
