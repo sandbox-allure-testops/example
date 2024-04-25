@@ -55,7 +55,9 @@ jobs:
           
       - name: Run tests
        # run: allurectl watch -- ./gradlew clean test
-        run: ./gradlew clean test
+        run: |
+          chmod +x ./gradlew 
+          ./gradlew clean test
         env:
           BRANCH: ${{ github.ref_name }}
           BROWSER: ${{ github.event.inputs.BROWSER}}
