@@ -54,7 +54,8 @@ jobs:
           ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
           
       - name: Run tests
-        run: allurectl watch -- ./gradlew clean test
+       # run: allurectl watch -- ./gradlew clean test
+        run: ./gradlew clean test
         env:
           BRANCH: ${{ github.ref_name }}
           BROWSER: ${{ github.event.inputs.BROWSER}}
