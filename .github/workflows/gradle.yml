@@ -39,8 +39,7 @@ env:
   ALLURE_RESULTS: "build/allure-results"
 
 jobs:
-  autotests: 
-    name: Run tests
+  tests: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -48,9 +47,8 @@ jobs:
       - name: Install Java
         uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
-          java-version: '17'
-          cache: 'gradle'
+          distribution: oracle
+          java-version: 17
                  
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
