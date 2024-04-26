@@ -20,7 +20,7 @@ public class IssuesRestTest {
     @Story("Create new issue")
     @Tags({@Tag("api")})
     @DisplayName("[16] Create issue via api")
-    @ParameterizedTest
+    @ParameterizedTest(name = "")
     @ValueSource(strings = {"First Note", "Second Note"})
     public void shouldCreateUserNote(@Param(value = "Title") String title) {
         steps.createIssueWithTitle(OWNER, REPO, title);
@@ -31,7 +31,7 @@ public class IssuesRestTest {
     @Story("Close existing issue")
     @Tags({@Tag("web")})
     @DisplayName("[17] Close issue via api")
-    @ParameterizedTest
+    @ParameterizedTest(name = "")
     @ValueSource(strings = {"First Note", "Second Note"})
     public void shouldDeleteUserNote(@Param(value = "Title") String title) {
         steps.createIssueWithTitle(OWNER, REPO, title);
