@@ -2,6 +2,7 @@ package io.qameta.allure;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -18,6 +19,7 @@ public class IssuesRestTest {
     @TM4J("AE-T1")
     @Story("Create new issue")
     @Tags({@Tag("api")})
+    @DisplayName("[16] Create issue via api")
     @ParameterizedTest
     @ValueSource(strings = {"First Note", "Second Note"})
     public void shouldCreateUserNote(@Param(value = "Title") String title) {
@@ -28,6 +30,7 @@ public class IssuesRestTest {
     @TM4J("AE-T2")
     @Story("Close existing issue")
     @Tags({@Tag("web")})
+    @DisplayName("[17] Close issue via api")
     @ParameterizedTest
     @ValueSource(strings = {"First Note", "Second Note"})
     public void shouldDeleteUserNote(@Param(value = "Title") String title) {
