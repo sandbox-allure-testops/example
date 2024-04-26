@@ -51,5 +51,4 @@ public class PullRequestsWebTest {
     public void stopDriver() {
         steps.stopDriver();
     }
-
 }
