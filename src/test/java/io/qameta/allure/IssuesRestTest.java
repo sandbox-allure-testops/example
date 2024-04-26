@@ -18,7 +18,7 @@ public class IssuesRestTest {
 
     @TM4J("AE-T1")
     @Story("Create new issue")
-    @Layer("API Tests")
+    @Layer("api")
     @Tags({@Tag("api")})
     @DisplayName("[16] Create issue via api")
     @ParameterizedTest(name = " (parameterized)")
