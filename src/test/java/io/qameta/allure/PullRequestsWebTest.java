@@ -7,12 +7,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
-/**
- * @author eroshenkoam (Artem Eroshenko).
- */
-@Layer("web")
-@Owner("eroshenkoam")
+@Owner("akarth")
 @Feature("Pull Requests")
+
 public class PullRequestsWebTest {
 
     private static final String OWNER = "allure-framework";
@@ -29,11 +26,9 @@ public class PullRequestsWebTest {
 
     @Test
     @TM4J("AE-T6")
-    @Microservice("Billing")
     @Story("Create new pull request")
-    @Tags({@Tag("web"), @Tag("regress"), @Tag("smoke")})
-    @JiraIssues({@JiraIssue("AE-1"), @JiraIssue("AE-2")})
-    @DisplayName("Creating new issue for authorized user")
+    @Tags({@Tag("web")})
+    @DisplayName("[13] Creating new issue for authorized user")
     public void shouldCreatePullRequest() {
         steps.openPullRequestsPage(OWNER, REPO);
         steps.createPullRequestFromBranch(BRANCH);
@@ -42,11 +37,9 @@ public class PullRequestsWebTest {
 
     @Test
     @TM4J("AE-T7")
-    @JiraIssue("AE-2")
-    @Microservice("Repository")
     @Story("Close existing pull request")
-    @Tags({@Tag("web"), @Tag("regress")})
-    @DisplayName("Deleting existing issue for authorized user")
+    @Tags({@Tag("web")})
+    @DisplayName(" [15] Deleting existing issue for authorized user")
     public void shouldClosePullRequest() {
         steps.openPullRequestsPage(OWNER, REPO);
         steps.createPullRequestFromBranch(BRANCH);
