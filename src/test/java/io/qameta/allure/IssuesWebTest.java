@@ -62,5 +62,4 @@ public class IssuesWebTest {
     public void stopDriver() {
         steps.stopDriver();
     }
-
 }
