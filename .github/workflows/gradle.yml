@@ -52,4 +52,4 @@ jobs:
           BROWSER: 'Chrome'
           ENDPOINT: 'sandbox.testops.cloud'
           OS: 'macOS'
-          VERSION: '5.1.2'
+          VERSION: '5.2.0-sb'
