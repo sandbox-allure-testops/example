@@ -53,6 +53,6 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Run tests
-        run: allurectl watch --name "Test Run" -- ./gradlew clean test
+        run: allurectl watch -- ./gradlew clean test
         env:
           VERSION: ${{ env.VERSION }}
