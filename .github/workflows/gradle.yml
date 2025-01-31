@@ -29,7 +29,7 @@ jobs:
         run: |
           latest_version=$(curl -s https://api.github.com/repos/allure-framework/allurectl/releases/latest | jq -r .tag_name)
           echo "ALLURECTL_VERSION=$latest_version" >> $GITHUB_ENV
-                 
+
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
@@ -38,9 +38,32 @@ jobs:
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allurectl-version: ${{ env.ALLURECTL_VERSION }}
 
-      - name: Set dynamic VERSION
-        run: echo "VERSION=$(date +'%-y.%-m.%-d')" >> $GITHUB_ENV
-          
+      - name: Set dynamic VERSION and OS
+        run: |
+          current_date=$(date +'%-y.%-m.%-d')
+          echo "DATE=$current_date" >> $GITHUB_ENV
+        
+          # Check if it's an odd or even run for the day
+          current_run_count=$(date +%s | awk '{print int($1/86400)}')  # Using days since Unix epoch to get run number
+          if ((current_run_count % 2 == 1)); then
+            echo "OS=macOS" >> $GITHUB_ENV
+          else
+            echo "OS=Windows" >> $GITHUB_ENV
+          fi
+        
+          #Check if it's the last or second-to-last day of the month
+          last_day_of_month=$(date -d "$(date +%Y-%m-01) + 1 month - 1 day" +%d)
+          second_to_last_day=$(($last_day_of_month - 1))
+
+          if [ $(date +%d) -eq $second_to_last_day ]; then
+            echo "VERSION=${current_date}-rc" >> $GITHUB_ENV
+          elif [ $(date +%d) -eq $last_day_of_month ]; then
+            previous_day=$(date -d "$(date +%Y-%m-%d) -1 day" +'%-y.%-m.%-d')
+            echo "VERSION=${previous_day}-release" >> $GITHUB_ENV
+          else
+            echo "VERSION=${current_date}" >> $GITHUB_ENV
+          fi
+
       - name: Run tests
         run: |
           chmod +x ./gradlew 
@@ -51,5 +74,5 @@ jobs:
           BRANCH: ${{ github.ref_name }}
           BROWSER: 'Chrome'
           ENDPOINT: 'sandbox.testops.cloud'
-          OS: 'macOS'
+          OS: ${{ env.OS }}
           VERSION: ${{ env.VERSION }}
