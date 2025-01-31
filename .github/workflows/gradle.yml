@@ -50,8 +50,6 @@ jobs:
           ALLURECTL_VERSION: 1.0.2
           
       - name: Run tests
-        run: |
-          chmod +x ./gradlew 
-          allurectl watch -- ./gradlew clean test
+        run: allurectl watch -- ./gradlew clean test
         env:
           VERSION: ${{ env.VERSION }}
