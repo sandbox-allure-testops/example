@@ -45,9 +45,9 @@ jobs:
         
           # Check if the run is odd or even
           if ((GITHUB_RUN_NUMBER % 2 == 1)); then
-            echo "OS=macOS" >> $GITHUB_ENV
-          else
             echo "OS=Windows" >> $GITHUB_ENV
+          else
+            echo "OS=macOS" >> $GITHUB_ENV
           fi
           
           # Check if it's the last or second-to-last day of the month
