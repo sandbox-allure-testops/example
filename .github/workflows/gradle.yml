@@ -19,21 +19,13 @@ env:
   ALLURE_RESULTS: "build/allure-results"
   ALLURE_TESTPLAN_PATH: "./testplan.json"
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-  #
-  BRANCH: ${{ github.ref_name }}
-  BROWSER: 'Chrome'
-  ENDPOINT: 'sandbox.testops.cloud'
-  OS: 'macOS'
 
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set dynamic VERSION
-        run: echo "VERSION=$(date +'%-y.%-m.%-d')" >> $GITHUB_ENV
-
+      
       - name: Install Java
         uses: actions/setup-java@v3
         with:
@@ -44,11 +36,20 @@ jobs:
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
-          allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
-          allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
-          allure-token: ${{ secrets.ALLURE_TOKEN }}
+          ALLURE_ENDPOINT: https://sandbox.testops.cloud/
+          ALLURE_PROJECT_ID: ${{ github.event.inputs.ALLURE_PROJECT_ID}}
+          ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
           
       - name: Run tests
-        run: allurectl watch -- ./gradlew clean test
+        run: |
+          chmod +x ./gradlew 
+          allurectl watch -- ./gradlew clean test
         env:
-          VERSION: ${{ env.VERSION }}
+          ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
+          ALLURE_RESULTS: "build/allure-results"
+          ALLURE_TESTPLAN_PATH: "./testplan.json"
+          BRANCH: ${{ github.ref_name }}
+          BROWSER: 'Chrome'
+          ENDPOINT: 'sandbox.testops.cloud'
+          OS: 'macOS'
+          VERSION: '5.2.0-sb'
