@@ -68,7 +68,7 @@ jobs:
           chmod +x ./gradlew 
           allurectl watch -- ./gradlew clean test
         env:
-          ALLURE_LAUNCH_NAME: "Test Run #${{ github.run_id }}"
+          ALLURE_LAUNCH_NAME: "Test Run #${{ github.run_number }}"
           ALLURE_RESULTS: "build/allure-results"
           ALLURE_TESTPLAN_PATH: "./testplan.json"
           BRANCH: ${{ github.ref_name }}
