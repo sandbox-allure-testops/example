@@ -49,7 +49,11 @@ jobs:
           ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
           ALLURECTL_VERSION: 1.0.2
           
+     - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
       - name: Run tests
-        run: allurectl watch -- ./gradlew clean test
+        run: chmod +x ./gradlew
+        run: allurectl watch --name "Test Run" -- ./gradlew clean test
         env:
           VERSION: ${{ env.VERSION }}
