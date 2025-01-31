@@ -29,6 +29,7 @@ jobs:
         run: |
           latest_version=$(curl -s https://api.github.com/repos/allure-framework/allurectl/releases/latest | jq -r .tag_name)
           echo "ALLURECTL_VERSION=$latest_version" >> $GITHUB_ENV
+          echo "ALLURECTL_VERSION: $latest_version"
 
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
@@ -42,6 +43,7 @@ jobs:
         run: |
           current_date=$(date +'%-y.%-m.%-d')
           echo "DATE=$current_date" >> $GITHUB_ENV
+          echo "DATE: $current_date"
         
           # Check if the run is odd or even
           if ((GITHUB_RUN_NUMBER % 2 == 1)); then
@@ -49,6 +51,7 @@ jobs:
           else
             echo "OS=Windows" >> $GITHUB_ENV
           fi
+          echo "OS: ${{ env.OS }}"
         
           # Check if it's the last or second-to-last day of the month
           last_day_of_month=$(date -d "$(date +%Y-%m-01) + 1 month - 1 day" +%d)
@@ -62,6 +65,7 @@ jobs:
           else
             echo "VERSION=${current_date}" >> $GITHUB_ENV
           fi
+          echo "VERSION: ${{ env.VERSION }}"
 
       - name: Run tests
         run: |
@@ -72,6 +76,6 @@ jobs:
           ALLURE_TESTPLAN_PATH: "./testplan.json"
           BRANCH: ${{ github.ref_name }}
           BROWSER: 'Chrome'
-          ENDPOINT: 'sandbox.testops.cloud'
+          ENDPOINT: ${{ steps.install-allurectl.outputs.allure-endpoint }}
           OS: ${{ env.OS }}
           VERSION: ${{ env.VERSION }}
