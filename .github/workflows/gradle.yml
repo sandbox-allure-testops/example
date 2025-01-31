@@ -19,6 +19,11 @@ env:
   ALLURE_RESULTS: "build/allure-results"
   ALLURE_TESTPLAN_PATH: "./testplan.json"
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+  #
+  BRANCH: ${{ github.ref_name }}
+  BROWSER: 'Chrome'
+  ENDPOINT: 'sandbox.testops.cloud'
+  OS: 'macOS'
 
 jobs:
   tests:
