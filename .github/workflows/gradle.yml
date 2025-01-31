@@ -47,7 +47,6 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ env.ALLURE_PROJECT_ID }}
           allure-project-id: ${{ secrets.ALLURE_TOKEN }}
-          allurectl-version: 1.0.2
           
       - name: Run tests
         run: |
