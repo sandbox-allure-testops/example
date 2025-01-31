@@ -72,6 +72,6 @@ jobs:
           ALLURE_TESTPLAN_PATH: "./testplan.json"
           BRANCH: ${{ github.ref_name }}
           BROWSER: 'Chrome'
-          ENDPOINT: ${{ steps.install-allurectl.outputs.allure-endpoint }}
+          ENDPOINT: 'Sandbox'
           OS: ${{ env.OS }}
           VERSION: ${{ env.VERSION }}
