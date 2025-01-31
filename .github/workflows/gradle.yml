@@ -54,5 +54,4 @@ jobs:
           chmod +x ./gradlew 
           allurectl watch -- ./gradlew clean test
         env:
-          ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
           VERSION: ${{ env.VERSION }}
