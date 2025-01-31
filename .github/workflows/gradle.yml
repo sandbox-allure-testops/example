@@ -44,9 +44,9 @@ jobs:
       - name: Install allurectl
         uses: allure-framework/setup-allurectl@v1
         with:
-          ALLURE_ENDPOINT: https://sandbox.testops.cloud/
-          ALLURE_PROJECT_ID: ${{ github.event.inputs.ALLURE_PROJECT_ID}}
-          ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+          allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
+          allure-project-id: ${{ env.ALLURE_PROJECT_ID }}
+          allure-token: ${{ secrets.ALLURE_TOKEN }}
           
       - name: Run tests
         run: |
