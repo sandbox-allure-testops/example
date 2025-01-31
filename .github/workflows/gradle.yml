@@ -51,7 +51,7 @@ jobs:
           else
             echo "OS=Windows" >> $GITHUB_ENV
           fi
-          echo "OS: $OS"
+          echo "OS=$OS"
         
           # Check if it's the last or second-to-last day of the month
           last_day_of_month=$(date -d "$(date +%Y-%m-01) + 1 month - 1 day" +%d)
@@ -65,7 +65,7 @@ jobs:
           else
             echo "VERSION=${current_date}" >> $GITHUB_ENV
           fi
-          echo "VERSION: $VERSION"
+          echo "VERSION=$VERSION"
 
       - name: Run tests
         run: |
