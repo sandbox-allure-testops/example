@@ -18,9 +18,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Set dynamic VERSION
-        run: echo "VERSION=$(date +'%-y.%-m.%-d')" >> $GITHUB_ENV
-
       - name: Install Java
         uses: actions/setup-java@v3
         with:
@@ -40,6 +37,9 @@ jobs:
           allure-project-id: 35
           allure-token: ${{ secrets.ALLURE_TOKEN }}
           allurectl-version: ${{ env.ALLURECTL_VERSION }}
+
+      - name: Set dynamic VERSION
+        run: echo "VERSION=$(date +'%-y.%-m.%-d')" >> $GITHUB_ENV
           
       - name: Run tests
         run: |
