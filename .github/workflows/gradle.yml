@@ -19,7 +19,6 @@ env:
   ALLURE_RESULTS: "build/allure-results"
   ALLURE_TESTPLAN_PATH: "./testplan.json"
   ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
-  #
   BRANCH: ${{ github.ref_name }}
   BROWSER: 'Chrome'
   ENDPOINT: 'sandbox.testops.cloud'
@@ -47,10 +46,12 @@ jobs:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ env.ALLURE_PROJECT_ID }}
           allure-project-id: ${{ secrets.ALLURE_TOKEN }}
+          allurectl-version: 2.16.0
+          #The latest version of allurectl is available at https://github.com/allure-framework/allurectl/releases
           
       - name: Run tests
         run: |
           chmod +x ./gradlew 
-           run: allurectl watch --launch-name "My Custom Test Run" -- ./gradlew clean test
+          allurectl watch -- ./gradlew clean test
         env:
           VERSION: ${{ env.VERSION }}
