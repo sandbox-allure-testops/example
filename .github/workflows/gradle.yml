@@ -45,7 +45,7 @@ jobs:
         with:
           allure-endpoint: ${{ env.ALLURE_ENDPOINT }}
           allure-token: ${{ env.ALLURE_PROJECT_ID }}
-          allure-project-id: ${{ secrets.ALLURE_TOKEN }}
+          allure-project-id: 35
           allurectl-version: 2.16.0
           #The latest version of allurectl is available at https://github.com/allure-framework/allurectl/releases
           
