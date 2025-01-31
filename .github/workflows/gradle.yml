@@ -41,7 +41,7 @@ jobs:
       - name: Set dynamic VERSION
         run: echo "VERSION=$(date +'%-y.%-m.%-d')" >> $GITHUB_ENV
           
-      - name: Run tests with Chrome
+      - name: Run tests
         run: |
           chmod +x ./gradlew 
           allurectl watch -- ./gradlew clean test
@@ -50,19 +50,6 @@ jobs:
           ALLURE_TESTPLAN_PATH: "./testplan.json"
           BRANCH: ${{ github.ref_name }}
           BROWSER: 'Chrome'
-          ENDPOINT: 'sandbox.testops.cloud'
-          OS: 'macOS'
-          VERSION: ${{ env.VERSION }}
-
-      - name: Run tests with Firefox
-        run: |
-          chmod +x ./gradlew 
-          allurectl watch -- ./gradlew clean test
-        env:
-          ALLURE_RESULTS: "build/allure-results"
-          ALLURE_TESTPLAN_PATH: "./testplan.json"
-          BRANCH: ${{ github.ref_name }}
-          BROWSER: 'Firefox'
           ENDPOINT: 'sandbox.testops.cloud'
           OS: 'macOS'
           VERSION: ${{ env.VERSION }}
