@@ -47,6 +47,7 @@ jobs:
           ALLURE_ENDPOINT: ${{ env.ALLURE_ENDPOINT }}
           ALLURE_PROJECT_ID: ${{ env.ALLURE_PROJECT_ID }}
           ALLURE_TOKEN: ${{ secrets.ALLURE_TOKEN }}
+          ALLURECTL_VERSION: 1.0.2
           
       - name: Run tests
         run: |
@@ -56,8 +57,4 @@ jobs:
           ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
           ALLURE_RESULTS: "build/allure-results"
           ALLURE_TESTPLAN_PATH: "./testplan.json"
-          BRANCH: ${{ github.ref_name }}
-          BROWSER: 'Chrome'
-          ENDPOINT: 'sandbox.testops.cloud'
-          OS: 'macOS'
-          VERSION: '5.2.0-sb'
+          VERSION: ${{ env.VERSION }}
