@@ -55,6 +55,4 @@ jobs:
           allurectl watch -- ./gradlew clean test
         env:
           ALLURE_JOB_RUN_ID: ${{ github.event.inputs.ALLURE_JOB_RUN_ID }}
-          ALLURE_RESULTS: "build/allure-results"
-          ALLURE_TESTPLAN_PATH: "./testplan.json"
           VERSION: ${{ env.VERSION }}
